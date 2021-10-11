@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  webgoat:
+    image: webgoat-8.0:1.0.0
+    container_name: webgoat
+    environment:
+      - WEBWOLF_HOST=webwolf
+      - WEBWOLF_PORT=9090
+      - TZ=Europe/Amsterdam
+    ports:
+      - "8080:8080"
+      - "9001:9001"
+    volumes:
+      - .:/home/webgoat/.webgoat
+    working_dir: /home/webgoat
+  webwolf:
+    image: webwolf-8.0:1.0.0
+    container_name: webwolf
+    ports:
+      - "9090:9090"
+    command: --spring.datasource.url=jdbc:hsqldb:hsql://10.138.0.2:9001/webgoat --server.address=0.0.0.0
+    depends_on:
+            - webgoat
+
