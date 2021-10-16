@@ -6,20 +6,27 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
-	 
+
+        stage('Checkout') {
             steps {
-		script {
-		    git branch: 'vtest10',
-			url: 'https://github.com/WebGoat/WebGoat.git'
-		    cd WebGoat
-		    withMaven(maven:MAVEN_VERSION){
+                script {
+                    git branch: 'vtest10',
+                        url: 'https://github.com/WebGoat/WebGoat.git'
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                script {
+                    sh "ls"
+                    sh "pwd"
+                    sh "cd WebGoat"
+                    withMaven(maven:MAVEN_VERSION){
                         sh "mvn clean install -DskipTests" 
                     }
-		    ls
-		    pwd
-		    uname -a
-		}
+                    sh "ls"
+                }
                 
             }
         }
