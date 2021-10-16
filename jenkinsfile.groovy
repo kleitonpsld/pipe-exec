@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    git branch: 'vtest10',
+                    git branch: 'master',
                         url: 'https://github.com/WebGoat/WebGoat.git'
                 }
             }
