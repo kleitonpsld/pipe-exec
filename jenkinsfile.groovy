@@ -3,7 +3,7 @@
 def MAVEN_VERSION="maven-3.6.3"
 
 pipeline {
-    agent master
+    agent any
 
     stages {
 
