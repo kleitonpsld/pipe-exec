@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    git branch: 'master',
+                    git branch: 'main',
                         url: 'https://github.com/WebGoat/WebGoat.git'
                 }
             }
@@ -21,11 +21,9 @@ pipeline {
                 script {
                     sh "ls"
                     sh "pwd"
-                    sh "cd WebGoat"
                     withMaven(maven:MAVEN_VERSION){
                         sh "mvn clean install -DskipTests" 
                     }
-                    sh "ls"
                 }
                 
             }
@@ -38,6 +36,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                script {
+                    sh "docker build -f webgoat-server/Dockerfile webgoat-server/. --tag webgoat-8.0:1.0.0"
+                    sh "docker build -f webwolf/Dockerfile webwolf/. --tag webwolf-8.0:1.0.0"
+                    sh "docker-compose up -d --force-recreate"
+                }
             }
         }
     }
