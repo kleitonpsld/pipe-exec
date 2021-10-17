@@ -71,10 +71,10 @@ pipeline {
                     println pretty_json
 
                     echo 'Pull imagem WebWolf'
-		            def urlImage = "http://10.138.0.2:2376/images/create?fromImage=kleitonpimenta/webwolf-8.0:1.0.0";
-                    def response = httpRequest url:"${urlImage}", httpMode:'POST', acceptType: 'APPLICATION_JSON', validResponseCodes:"200"
-                    println("Status: " + response.status)
-                    def pretty_json = writeJSON( returnText: true, json: response.content)
+		            def urlImage2 = "http://10.138.0.2:2376/images/create?fromImage=kleitonpimenta/webwolf-8.0:1.0.0";
+                    def response2 = httpRequest url:"${urlImage2}", httpMode:'POST', acceptType: 'APPLICATION_JSON', validResponseCodes:"200"
+                    println("Status: " + response2.status)
+                    def pretty_json = writeJSON( returnText: true, json: response2.content)
                     println pretty_json
                     
                 }
@@ -96,13 +96,13 @@ pipeline {
                         echo response
 
                     	echo 'Criando container webwolf'
-			            def url = "http://10.138.0.2:2376/containers/webwolf?force=true"
-                        def response = sh(script: "curl -v -X DELETE $url", returnStdout: true).trim()
-                        echo response
+			            def url2 = "http://10.138.0.2:2376/containers/webwolf?force=true"
+                        def response2 = sh(script: "curl -v -X DELETE $url2", returnStdout: true).trim()
+                        echo response2
 
-                        url = "http://10.138.0.2:2376/containers/create?name=webwolf"
-                        response = sh(script: "curl -v -X POST -H 'Content-Type: application/json' -d @container.json -s $url", returnStdout: true).trim()
-                        echo response
+                        url2 = "http://10.138.0.2:2376/containers/create?name=webwolf"
+                        response2 = sh(script: "curl -v -X POST -H 'Content-Type: application/json' -d @container.json -s $url2", returnStdout: true).trim()
+                        echo response2
                     }
                 }
             }
