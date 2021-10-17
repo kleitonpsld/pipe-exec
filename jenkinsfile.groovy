@@ -74,8 +74,8 @@ pipeline {
 		            def urlImage2 = "http://10.138.0.2:2376/images/create?fromImage=kleitonpimenta/webwolf-8.0:1.0.0";
                     def response2 = httpRequest url:"${urlImage2}", httpMode:'POST', acceptType: 'APPLICATION_JSON', validResponseCodes:"200"
                     println("Status: " + response2.status)
-                    def pretty_json = writeJSON( returnText: true, json: response2.content)
-                    println pretty_json
+                    def pretty_json2 = writeJSON( returnText: true, json: response2.content)
+                    println pretty_json2
                     
                 }
             }
