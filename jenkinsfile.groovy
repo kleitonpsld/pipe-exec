@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     git branch: 'main',
-                        url: 'https://github.com/WebGoat/WebGoat.git'
+                        url: 'https://github.com/kleitonpsld/webgoat.git'
                 }
             }
         }
